@@ -9,7 +9,7 @@ const Dashboard = () => {
         <div className="p-10 bg-gray-100 min-h-screen">
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-                <StatCard title="Total Students" value="1,257" change="+12% from last month" icon={<FaUserGraduate className="text-blue-600" />} />
+                <StatCard title="Total Students" value="1,257" change="+12% from last month" icon={<FaUserGraduate className="text-primary" />} />
                 <StatCard title="Total Books" value="458" change="+5% from last month" icon={<FaBook className="text-purple-600" />} />
                 <StatCard title="Standards" value={standards.length} change="" icon={<FaBuilding className="text-orange-600" />} />
                 <StatCard title="Total Options" value={options.length} change="" icon={<FaUsers className="text-green-600" />} />
@@ -38,7 +38,7 @@ const StatCard = ({ title, value, change, icon }) => (
 const ActivityCard = () => (
     <div className="bg-white p-10 rounded-lg shadow-lg">
         <h3 className="text-xl font-semibold mb-6">Recent Activities</h3>
-        <ActivityItem icon={<FaPlus className="text-blue-600" />} text="New book added: Mathematics Grade 10 " time="2 hours ago" />
+        <ActivityItem icon={<FaPlus className="text-primary" />} text="New book added: Mathematics Grade 10 " time="2 hours ago" />
         <ActivityItem icon={<FaUserGraduate className="text-green-600" />} text="New student registration" time="4 hours ago" />
         <ActivityItem icon={<FaBuilding className="text-purple-600" />} text="Standard updated" time="6 hours ago" />
     </div>
@@ -58,7 +58,7 @@ const QuickActions = () => (
     <div className="bg-white p-10 rounded-lg shadow-lg">
         <h3 className="text-xl font-semibold mb-6">Quick Actions</h3>
         <div className="grid grid-cols-2 gap-6">
-            <ActionButton text="Add Book" icon={<FaPlus className="text-blue-600" />} />
+            <ActionButton text="Add Book" icon={<FaPlus className="text-primary" />} />
             <ActionButton text="Add Student" icon={<FaUserGraduate className="text-green-600" />} />
             <ActionButton text="Add Standard" icon={<FaBuilding className="text-purple-600" />} />
             <ActionButton text="Settings" icon={<FaCog className="text-orange-600" />} />

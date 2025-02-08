@@ -52,14 +52,14 @@ const Books = () => {
                 <h2 className="text-3xl font-bold text-gray-800">Books</h2>
                 <button
                     onClick={handleOpenModal}
-                    className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600">
+                    className="flex items-center bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary">
                     <FaPlus className="mr-2" /> Add Book
                 </button>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg">
                 <table className="w-full border-collapse">
                     <thead>
-                        <tr className="bg-blue-500 text-white">
+                        <tr className="bg-primary text-white">
                             <th className="p-4 text-left">Title</th>
                             <th className="p-4 text-left">Standard</th>
                             <th className="p-4 text-left">Has Chapters</th>
@@ -70,12 +70,12 @@ const Books = () => {
                         {books.map(book => (
                             <tr key={book.id} className="border-b border-gray-200 hover:bg-gray-100 transition">
                                 <td className="p-4 text-gray-700 font-medium flex items-center space-x-2">
-                                    <FaBookOpen className="text-blue-600" />
+                                    <FaBookOpen className="text-primary" />
                                     <span>{book.title}</span>
                                 </td>
                                 <td className="p-4 text-gray-700 font-medium">{book.standard_name}</td>
                                 <td className="p-4 text-gray-700 font-medium flex justify-center">
-                                    <button onClick={() => handleToggleChapters(book.id, book.has_chapters)} className="text-blue-600">
+                                    <button onClick={() => handleToggleChapters(book.id, book.has_chapters)} className="text-primary">
                                         {book.has_chapters ? <FaToggleOn size={24} /> : <FaToggleOff size={24} />}
                                     </button>
                                 </td>
@@ -144,7 +144,7 @@ const Books = () => {
                             </div>
                             <div className="flex justify-end space-x-4">
                                 <button type="button" onClick={handleCloseModal} className="bg-gray-300 px-4 py-2 rounded-lg">Cancel</button>
-                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Add</button>
+                                <button type="submit" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary">Add</button>
                             </div>
                         </form>
                     </div>

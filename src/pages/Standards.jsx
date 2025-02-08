@@ -64,14 +64,14 @@ const Standards = () => {
                 <h2 className="text-3xl font-bold text-gray-800">Standards</h2>
                 <button
                     onClick={handleOpenModal}
-                    className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600">
+                    className="flex items-center bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary">
                     <FaPlus className="mr-2" /> Add Standard
                 </button>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg">
                 <table className="w-full border-collapse">
                     <thead>
-                        <tr className="bg-blue-500 text-white">
+                        <tr className="bg-primary text-white">
                             <th className="p-4 text-left">Grade (English)</th>
                             <th className="p-4 text-left">Grade (Gujarati)</th>
                             <th className="p-4 text-left">Dashboard Option ID</th>
@@ -85,7 +85,7 @@ const Standards = () => {
                                 <td className="p-4 text-gray-700 font-medium">{standard.name_gu}</td>
                                 <td className="p-4 text-gray-700 font-medium">{standard.dashboard_option_id}</td>
                                 <td className="p-4 flex justify-center space-x-4">
-                                    <button onClick={() => handleEditModalOpen(standard)} className="text-blue-500 hover:text-blue-700 bg-blue-100 p-2 rounded-lg">
+                                    <button onClick={() => handleEditModalOpen(standard)} className="text-primary hover:text-blue-700 bg-blue-100 p-2 rounded-lg">
                                         <FaEdit />
                                     </button>
                                     <button onClick={() => DeleteStandards(standard.id)} className="text-red-500 hover:text-red-700 bg-red-100 p-2 rounded-lg">
@@ -141,7 +141,7 @@ const Standards = () => {
                             </div>
                             <div className="flex justify-end space-x-4">
                                 <button type="button" onClick={handleCloseModal} className="bg-gray-300 px-4 py-2 rounded-lg">Cancel</button>
-                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Add</button>
+                                <button type="submit" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary">Add</button>
                             </div>
                         </form>
                     </div>
@@ -171,7 +171,7 @@ const Standards = () => {
                             </div>
                             <div className="flex justify-end space-x-4">
                                 <button type="button" onClick={handleEditModalClose} className="bg-gray-300 px-4 py-2 rounded-lg">Cancel</button>
-                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Update</button>
+                                <button type="submit" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary">Update</button>
                             </div>
                         </form>
                     </div>

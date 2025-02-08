@@ -73,14 +73,14 @@ const Options = () => {
         <div className="p-10 bg-gray-100 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <h2 className="text-3xl font-bold text-gray-800">Options</h2>
-                <button onClick={handleAddModalOpen} className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600">
+                <button onClick={handleAddModalOpen} className="flex items-center bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary">
                     <FaPlus className="mr-2" /> Add Option
                 </button>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg">
                 <table className="w-full border-collapse">
                     <thead>
-                        <tr className="bg-blue-500 text-white">
+                        <tr className="bg-primary text-white">
                             <th className="p-4 text-left">Icon</th>
                             <th className="p-4 text-left">Title</th>
                             <th className="p-4 text-left">Priority</th>
@@ -98,7 +98,7 @@ const Options = () => {
                                     <input type="number" className="w-16 p-2 border rounded" defaultValue={option.priority} onBlur={(e) => handlePriorityChange(option.id, e.target.value)} />
                                 </td>
                                 <td className="p-4 flex justify-center space-x-4">
-                                    <button onClick={() => handleEditModalOpen(option)} className="text-blue-500 hover:text-blue-700 bg-blue-100 p-2 rounded-lg">
+                                    <button onClick={() => handleEditModalOpen(option)} className="text-primary hover:text-blue-700 bg-blue-100 p-2 rounded-lg">
                                         <FaEdit />
                                     </button>
                                     <button onClick={() => handleDelete(option.id)}  className="text-red-500 hover:text-red-700 bg-red-100 p-2 rounded-lg">
@@ -119,7 +119,7 @@ const Options = () => {
                             <input type="text" name="icon" placeholder="Icon URL" onChange={handleChange} required className="w-full p-2 border rounded mb-4" />
                             <div className="flex justify-end space-x-4">
                                 <button type="button" onClick={handleAddModalClose} className="bg-gray-300 px-4 py-2 rounded-lg">Cancel</button>
-                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Add</button>
+                                <button type="submit" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary">Add</button>
                             </div>
                         </form>
                     </div>
@@ -134,7 +134,7 @@ const Options = () => {
                             <input type="text" name="icon" value={editOption.icon} onChange={handleEditChange} required className="w-full p-2 border rounded mb-4" />
                             <div className="flex justify-end space-x-4">
                                 <button type="button" onClick={handleEditModalClose} className="bg-gray-300 px-4 py-2 rounded-lg">Cancel</button>
-                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Update</button>
+                                <button type="submit" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary">Update</button>
                             </div>
                         </form>
                     </div>
