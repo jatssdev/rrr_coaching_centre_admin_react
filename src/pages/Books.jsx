@@ -29,7 +29,7 @@ const Books = () => {
     };
 
     const handleOpenModal = () => setIsModalOpen(true);
-    const handleCloseModal = () => setIsModalOpen(false);   
+    const handleCloseModal = () => setIsModalOpen(false);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewBook({ ...newBook, [name]: value });
