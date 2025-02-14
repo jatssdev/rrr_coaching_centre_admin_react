@@ -7,7 +7,7 @@ import PdfViewer from './components/PdfViewer';
 
 const Layout = () => {
   const [isPdfOpen, setIsPdfOpen] = useState(false);
-  const pdfUrl = "https://rrr.jatssdev.com/pdf_book/1-English.PDF"; // Replace with your PDF URL
+  // const pdfUrl = "https://rrr.jatssdev.com/pdf_book/1-English.PDF"; // Replace with your PDF URL
 
   return (
     <ContextProvider>
@@ -21,7 +21,7 @@ const Layout = () => {
                 Open PDF Viewer
               </button>
 
-              {isPdfOpen && <PdfViewer pdfUrl={pdfUrl} onClose={() => setIsPdfOpen(false)} />}
+              {isPdfOpen && <PdfViewer  />}
             </div>
             <Outlet />
           </main>
