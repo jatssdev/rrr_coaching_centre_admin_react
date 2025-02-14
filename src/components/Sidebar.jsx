@@ -31,6 +31,12 @@ const Sidebar = () => {
         >
           <FaBook className="mr-3 text-xl" /> Books
         </NavLink>
+        <NavLink
+          to="/scientists"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBook className="mr-3 text-xl" /> Scientists
+        </NavLink>
       </nav>
     </div>
   );

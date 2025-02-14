@@ -3,14 +3,14 @@ import { GlobalContext } from '../components/ContextProvider';
 import { FaUserGraduate, FaBook, FaBuilding, FaUsers, FaPlus, FaCog } from 'react-icons/fa';
 
 const Dashboard = () => {
-    const { options, standards } = useContext(GlobalContext);
+    const { options, standards, books } = useContext(GlobalContext);
 
     return (
         <div className="p-10 bg-gray-100 min-h-screen">
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-                <StatCard title="Total Students" value="1,257" change="+12% from last month" icon={<FaUserGraduate className="text-primary" />} />
-                <StatCard title="Total Books" value="458" change="+5% from last month" icon={<FaBook className="text-purple-600" />} />
+                <StatCard title="Total Students" value="11,257,000" change="+12% from last month" icon={<FaUserGraduate className="text-primary" />} />
+                <StatCard title="Total Books" value={books.length} change="" icon={<FaBook className="text-purple-600" />} />
                 <StatCard title="Standards" value={standards.length} change="" icon={<FaBuilding className="text-orange-600" />} />
                 <StatCard title="Total Options" value={options.length} change="" icon={<FaUsers className="text-green-600" />} />
             </div>

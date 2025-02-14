@@ -10,6 +10,7 @@ import Standards from "./pages/Standards";
 import Books from "./pages/Books";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Scientists from "./pages/Scientists";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,8 @@ const router = createBrowserRouter([
           { path: "options", element: <Options /> },
           { path: "standards", element: <Standards /> },
           { path: "books", element: <Books /> },
+          { path: "scientists", element: <Scientists /> },
+
         ]
       },
     ],
