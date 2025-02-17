@@ -10,8 +10,20 @@ export default function ContextProvider({ children }) {
     const [standards, setStandards] = useState([]);
     const [books, setBooks] = useState([]);
     const [scientists, setScientists] = useState([]);
+    const [generalKnowledge, setGeneralKnowledge] = useState([]); // New State
+    const [bhagwadGeeta, setBhagwadGeeta] = useState([]); // New State
 
-    // Fetch functions
+    const fetchBhagwadGeeta = async () => {
+        try {
+            const response = await axios.get("https://rrr.jatssdev.com/api/bhagwad-geeta/all");
+            if (response.data.status === "success") {
+                setBhagwadGeeta(response.data.data || []);
+            }
+        } catch (error) {
+            console.error("Error fetching Bhagwad Geeta:", error);
+        }
+    };
+    // Fetch Functions
     const fetchOptions = async () => {
         try {
             const response = await axios.get("https://rrr.jatssdev.com/api/dashboard/all");
@@ -30,7 +42,7 @@ export default function ContextProvider({ children }) {
                 setJivVikashPothi(response.data.data || []);
             }
         } catch (error) {
-            console.error("Error fetching Jiv Vikash Pothis:", error);
+            console.error("Error fetching Jiv Vikash Pothi:", error);
         }
     };
 
@@ -67,6 +79,17 @@ export default function ContextProvider({ children }) {
         }
     };
 
+    const fetchGeneralKnowledge = async () => {
+        try {
+            const response = await axios.get("https://rrr.jatssdev.com/api/general-knowledge/all");
+            if (response.data.status === "success") {
+                setGeneralKnowledge(response.data.data || []);
+            }
+        } catch (error) {
+            console.error("Error fetching General Knowledge:", error);
+        }
+    };
+
     // Fetch all data on component mount
     useEffect(() => {
         fetchOptions();
@@ -74,6 +97,8 @@ export default function ContextProvider({ children }) {
         fetchBooks();
         fetchScientists();
         fetchJivVikashPothis();
+        fetchGeneralKnowledge(); // Fetch General Knowledge
+        fetchBhagwadGeeta();
     }, []);
 
     return (
@@ -83,7 +108,9 @@ export default function ContextProvider({ children }) {
                 jivVikashPothi, setJivVikashPothi, fetchJivVikashPothis,
                 standards, setStandards, fetchStandards,
                 books, setBooks, fetchBooks,
-                scientists, setScientists, fetchScientists
+                scientists, setScientists, fetchScientists,
+                generalKnowledge, setGeneralKnowledge, fetchGeneralKnowledge, // Added to Context,
+                bhagwadGeeta, setBhagwadGeeta, fetchBhagwadGeeta,
             }}
         >
             {children}

@@ -43,6 +43,18 @@ const Sidebar = () => {
         >
           <FaBook className="mr-3 text-xl" /> Jivan Vikash Pothi
         </NavLink>
+        <NavLink
+          to="/generalknowledge"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBook className="mr-3 text-xl" /> General Knowledge
+        </NavLink>
+        <NavLink
+          to="/bhagwadgeeta"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBook className="mr-3 text-xl" /> Bhagwad Geeta
+        </NavLink>
       </nav>
     </div>
   );
