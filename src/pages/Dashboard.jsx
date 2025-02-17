@@ -1,24 +1,38 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../components/ContextProvider';
-import { FaUserGraduate, FaBook, FaBuilding, FaUsers, FaPlus, FaCog } from 'react-icons/fa';
+import {
+    FaUserGraduate, FaBook, FaBuilding, FaUsers, FaPlus, FaCog,
+    FaFlask, FaBookOpen
+} from 'react-icons/fa';
 
 const Dashboard = () => {
-    const { options, standards, books } = useContext(GlobalContext);
+    const { options, standards, books, scientists, jivVikashPothi } = useContext(GlobalContext);
 
     return (
         <div className="p-10 bg-gray-100 min-h-screen">
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-10">
                 <StatCard title="Total Students" value="11,257,000" change="+12% from last month" icon={<FaUserGraduate className="text-primary" />} />
                 <StatCard title="Total Books" value={books.length} change="" icon={<FaBook className="text-purple-600" />} />
                 <StatCard title="Standards" value={standards.length} change="" icon={<FaBuilding className="text-orange-600" />} />
                 <StatCard title="Total Options" value={options.length} change="" icon={<FaUsers className="text-green-600" />} />
+                <StatCard title="Scientists" value={scientists.length} change="" icon={<FaFlask className="text-blue-600" />} />
+                <StatCard title="Jiv Vikash Pothi" value={jivVikashPothi.length} change="" icon={<FaBookOpen className="text-red-600" />} />
             </div>
 
             {/* Recent Activities & Quick Actions */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
                 <ActivityCard />
                 <QuickActions />
+            </div>
+
+            {/* Data Lists */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <ListCard title="Options" data={options} />
+                <ListCard title="Books" data={books} />
+                <ListCard title="Standards" data={standards} />
+                <ListCard title="Scientists" data={scientists} />
+                <ListCard title="Jiv Vikash Pothi" data={jivVikashPothi} />
             </div>
         </div>
     );
@@ -70,6 +84,21 @@ const ActionButton = ({ text, icon }) => (
     <div className="bg-gray-100 p-6 rounded-lg flex items-center justify-center space-x-3 hover:bg-gray-200 cursor-pointer text-lg font-medium">
         {icon}
         <span className="text-gray-700">{text}</span>
+    </div>
+);
+
+const ListCard = ({ title, data }) => (
+    <div className="bg-white p-10 rounded-lg shadow-lg">
+        <h3 className="text-xl font-semibold mb-4">{title}</h3>
+        {data.length > 0 ? (
+            <ul className="space-y-3">
+                {data.slice(0, 5).map((item, index) => (
+                    <li key={index} className="text-gray-700 border-b pb-2">{item.name || item.title || item.name_gu}</li>
+                ))}
+            </ul>
+        ) : (
+            <p className="text-gray-500">No {title.toLowerCase()} available</p>
+        )}
     </div>
 );
 
