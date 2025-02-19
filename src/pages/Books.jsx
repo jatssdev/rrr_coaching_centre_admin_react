@@ -65,7 +65,7 @@ const Books = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("https://rrr.jatssdev.com/api/book/add", { ...newBook, streams: JSON.stringify(newBook.streams) });
+            await axios.post("https://rrr.jatssdev.com/api/book/add", newBook);
             fetchBooks();
             handleCloseModal();
         } catch (error) {
