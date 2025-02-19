@@ -14,6 +14,9 @@ import Scientists from "./pages/Scientists";
 import JivVikashPothi from "./pages/JivVikashPothi";
 import GeneralKnowledge from "./pages/GeneralKnowledge";
 import BhagwadGeeta from "./pages/BhagwadGeeta";
+import Banners from "./pages/Banners";
+import Chapters from "./pages/Chapters";
+import Youtube from "./pages/Youtube";
 
 
 const router = createBrowserRouter([
@@ -31,9 +34,11 @@ const router = createBrowserRouter([
           { path: "books", element: <Books /> },
           { path: "scientists", element: <Scientists /> },
           { path: "jivvikashpothi", element: <JivVikashPothi /> },
-
           { path: "generalknowledge", element: <GeneralKnowledge /> },
           { path: "bhagwadgeeta", element: <BhagwadGeeta /> },
+          { path: "banners", element: <Banners /> },
+          { path: "chapters", element: <Chapters /> },
+          { path: "youtube", element: <Youtube /> },
 
 
         ]

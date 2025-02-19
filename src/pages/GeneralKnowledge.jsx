@@ -69,10 +69,10 @@ const GeneralKnowledge = () => {
                                     <span>{knowledge.title}</span>
                                 </td>
                                 <td className="p-4">
-                                    <img src={knowledge.icon} alt="Icon" className="w-10 h-10 rounded-full" />
+                                    <img src={`https://rrr.jatssdev.com/gk/${knowledge.icon}`} alt="Icon" className="w-10 h-10 rounded-full" />
                                 </td>
                                 <td className="p-4">
-                                    <a href={knowledge.pdf_url} target="_blank" rel="noopener noreferrer"
+                                    <a href={`https://rrr.jatssdev.com/gk/${knowledge.pdf_url}`} target="_blank" rel="noopener noreferrer"
                                         className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 flex items-center">
                                         <FaEye className="mr-2" /> View PDF
                                     </a>

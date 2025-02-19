@@ -7,12 +7,13 @@ const Scientists = () => {
     const { scientists, fetchScientists } = useContext(GlobalContext);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [newScientist, setNewScientist] = useState({ name: "", img_url: "", pdf_url: "" });
+    const [newScientist, setNewScientist] = useState({ name: "", name_english: "", img_url: "", pdf_url: "" });
     const [editScientist, setEditScientist] = useState(null);
 
+    // Open & Close Modals
     const handleAddModalOpen = () => setIsAddModalOpen(true);
     const handleAddModalClose = () => {
-        setNewScientist({ name: "", img_url: "", pdf_url: "" });
+        setNewScientist({ name: "", name_english: "", img_url: "", pdf_url: "" });
         setIsAddModalOpen(false);
     };
 
@@ -22,14 +23,11 @@ const Scientists = () => {
     };
     const handleEditModalClose = () => setIsEditModalOpen(false);
 
-    const handleChange = (e) => {
-        setNewScientist({ ...newScientist, [e.target.name]: e.target.value });
-    };
+    // Handle Inputs
+    const handleChange = (e) => setNewScientist({ ...newScientist, [e.target.name]: e.target.value });
+    const handleEditChange = (e) => setEditScientist({ ...editScientist, [e.target.name]: e.target.value });
 
-    const handleEditChange = (e) => {
-        setEditScientist({ ...editScientist, [e.target.name]: e.target.value });
-    };
-
+    // Add Scientist
     const handleAddSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -41,10 +39,11 @@ const Scientists = () => {
         }
     };
 
+    // Edit Scientist
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`https://rrr.jatssdev.com/api/scientist/update`, editScientist);
+            await axios.post("https://rrr.jatssdev.com/api/scientist/update", editScientist);
             fetchScientists();
             handleEditModalClose();
         } catch (error) {
@@ -52,6 +51,7 @@ const Scientists = () => {
         }
     };
 
+    // Delete Scientist
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this scientist?")) {
             try {
@@ -75,13 +75,14 @@ const Scientists = () => {
                 </button>
             </div>
 
-            {/* Table */}
+            {/* Scientists Table */}
             <div className="bg-white p-8 rounded-xl shadow-lg">
                 <table className="w-full border-collapse">
                     <thead>
                         <tr className="bg-blue-500 text-white">
                             <th className="p-4 text-left">Image</th>
-                            <th className="p-4 text-left">Name</th>
+                            <th className="p-4 text-left">Name (Gujarati)</th>
+                            <th className="p-4 text-left">Name (English)</th>
                             <th className="p-4 text-left">PDF</th>
                             <th className="p-4 text-center">Actions</th>
                         </tr>
@@ -91,15 +92,16 @@ const Scientists = () => {
                             <tr key={scientist.id} className="border-b border-gray-200 hover:bg-gray-100 transition">
                                 <td className="p-4">
                                     <img
-                                        src={scientist.img_url}
+                                        src={`https://rrr.jatssdev.com/scientist/${scientist.img_url}`}
                                         alt={scientist.name}
                                         className="w-14 h-14 rounded-lg shadow-md"
                                     />
                                 </td>
                                 <td className="p-4 text-gray-700 font-medium">{scientist.name}</td>
+                                <td className="p-4 text-gray-700 font-medium">{scientist.name_english}</td>
                                 <td className="p-4 text-gray-700 font-medium">
                                     <a
-                                        href={scientist.pdf_url}
+                                        href={`https://rrr.jatssdev.com/scientist/${scientist.pdf_url}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-blue-500 hover:underline"
@@ -130,7 +132,7 @@ const Scientists = () => {
             {/* Add Scientist Modal */}
             {isAddModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl">
+                    <div className="bg-white p-6 rounded-lg shadow-xl w-96">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-semibold">Add Scientist</h2>
                             <button onClick={handleAddModalClose} className="text-gray-500 hover:text-gray-700">
@@ -138,10 +140,45 @@ const Scientists = () => {
                             </button>
                         </div>
                         <form onSubmit={handleAddSubmit} className="space-y-4">
-                            <input type="text" name="name" placeholder="Name" value={newScientist.name} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg" required />
-                            <input type="text" name="img_url" placeholder="Image URL" value={newScientist.img_url} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg" required />
-                            <input type="text" name="pdf_url" placeholder="PDF URL" value={newScientist.pdf_url} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg" required />
-                            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Add</button>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Name (Gujarati)"
+                                value={newScientist.name}
+                                onChange={handleChange}
+                                className="w-full px-4 py-2 border rounded-lg"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="name_english"
+                                placeholder="Name (English)"
+                                value={newScientist.name_english}
+                                onChange={handleChange}
+                                className="w-full px-4 py-2 border rounded-lg"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="img_url"
+                                placeholder="Image URL"
+                                value={newScientist.img_url}
+                                onChange={handleChange}
+                                className="w-full px-4 py-2 border rounded-lg"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="pdf_url"
+                                placeholder="PDF URL"
+                                value={newScientist.pdf_url}
+                                onChange={handleChange}
+                                className="w-full px-4 py-2 border rounded-lg"
+                                required
+                            />
+                            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+                                Add Scientist
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -150,7 +187,7 @@ const Scientists = () => {
             {/* Edit Scientist Modal */}
             {isEditModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl">
+                    <div className="bg-white p-6 rounded-lg shadow-xl w-96">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-semibold">Edit Scientist</h2>
                             <button onClick={handleEditModalClose} className="text-gray-500 hover:text-gray-700">
@@ -158,10 +195,45 @@ const Scientists = () => {
                             </button>
                         </div>
                         <form onSubmit={handleEditSubmit} className="space-y-4">
-                            <input type="text" name="name" placeholder="Name" value={editScientist.name} onChange={handleEditChange} className="w-full px-4 py-2 border rounded-lg" required />
-                            <input type="text" name="img_url" placeholder="Image URL" value={editScientist.img_url} onChange={handleEditChange} className="w-full px-4 py-2 border rounded-lg" required />
-                            <input type="text" name="pdf_url" placeholder="PDF URL" value={editScientist.pdf_url} onChange={handleEditChange} className="w-full px-4 py-2 border rounded-lg" required />
-                            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Update</button>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Name (Gujarati)"
+                                value={editScientist.name}
+                                onChange={handleEditChange}
+                                className="w-full px-4 py-2 border rounded-lg"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="name_english"
+                                placeholder="Name (English)"
+                                value={editScientist.name_english}
+                                onChange={handleEditChange}
+                                className="w-full px-4 py-2 border rounded-lg"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="img_url"
+                                placeholder="Image URL"
+                                value={editScientist.img_url}
+                                onChange={handleEditChange}
+                                className="w-full px-4 py-2 border rounded-lg"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="pdf_url"
+                                placeholder="PDF URL"
+                                value={editScientist.pdf_url}
+                                onChange={handleEditChange}
+                                className="w-full px-4 py-2 border rounded-lg"
+                                required
+                            />
+                            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+                                Update Scientist
+                            </button>
                         </form>
                     </div>
                 </div>

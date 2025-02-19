@@ -16,13 +16,6 @@ const Layout = () => {
         <div className="flex-1 flex flex-col">
           <Navbar />
           <main className="p-4">
-            <div className="p-10">
-              <button onClick={() => setIsPdfOpen(true)} className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                Open PDF Viewer
-              </button>
-
-              {isPdfOpen && <PdfViewer  />}
-            </div>
             <Outlet />
           </main>
         </div>

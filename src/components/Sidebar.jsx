@@ -1,6 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaTachometerAlt, FaCogs, FaBook, FaClipboardList } from 'react-icons/fa';
+import {
+  FaTachometerAlt, FaCogs, FaBook, FaClipboardList, FaFlask, FaLightbulb, FaBookReader
+} from 'react-icons/fa';
+import { GiOpenBook } from 'react-icons/gi';
 
 const Sidebar = () => {
   return (
@@ -11,49 +14,67 @@ const Sidebar = () => {
           to="/"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaTachometerAlt className="mr-3 text-xl" /> Dashboard
+          <FaTachometerAlt className="mr-3 text-xl text-primary" /> Dashboard
         </NavLink>
         <NavLink
           to="/options"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaCogs className="mr-3 text-xl" /> Options
+          <FaCogs className="mr-3 text-xl text-primary" /> Options
         </NavLink>
         <NavLink
           to="/standards"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaClipboardList className="mr-3 text-xl" /> Standards
+          <FaClipboardList className="mr-3 text-xl text-primary" /> Standards
         </NavLink>
         <NavLink
           to="/books"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaBook className="mr-3 text-xl" /> Books
+          <GiOpenBook className="mr-3 text-xl text-primary" /> Books
         </NavLink>
         <NavLink
           to="/scientists"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaBook className="mr-3 text-xl" /> Scientists
+          <FaFlask className="mr-3 text-xl text-primary" /> Scientists
         </NavLink>
         <NavLink
           to="/jivvikashpothi"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaBook className="mr-3 text-xl" /> Jivan Vikash Pothi
+          <GiOpenBook className="mr-3 text-xl text-primary" /> Jivan Vikash Pothi
         </NavLink>
         <NavLink
           to="/generalknowledge"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaBook className="mr-3 text-xl" /> General Knowledge
+          <FaLightbulb className="mr-3 text-xl text-primary" /> General Knowledge
         </NavLink>
         <NavLink
           to="/bhagwadgeeta"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaBook className="mr-3 text-xl" /> Bhagwad Geeta
+          <FaBookReader className="mr-3 text-xl text-primary" /> Bhagwad Geeta
+        </NavLink>
+        <NavLink
+          to="/banners"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBookReader className="mr-3 text-xl text-primary" /> Banners
+        </NavLink>
+        <NavLink
+          to="/chapters"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBookReader className="mr-3 text-xl text-primary" /> Chapters
+        </NavLink>
+        <NavLink
+          to="/youtube"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBookReader className="mr-3 text-xl text-primary" /> Youtube
         </NavLink>
       </nav>
     </div>

@@ -12,7 +12,29 @@ export default function ContextProvider({ children }) {
     const [scientists, setScientists] = useState([]);
     const [generalKnowledge, setGeneralKnowledge] = useState([]); // New State
     const [bhagwadGeeta, setBhagwadGeeta] = useState([]); // New State
+    const [banners, setBanners] = useState([]); // New State
+    const [chapters, setChapters] = useState([]);
 
+    const fetchChapters = async () => {
+        try {
+            const response = await axios.get("https://rrr.jatssdev.com/api/chapter/all");
+            if (response.data.status === "success") {
+                setChapters(response.data.data || []);
+            }
+        } catch (error) {
+            console.error("Error fetching Chapters:", error);
+        }
+    };
+    const fetchBanners = async () => {
+        try {
+            const response = await axios.get("https://rrr.jatssdev.com/api/banner/all");
+            if (response.data.status === "success") {
+                setBanners(response.data.data || []);
+            }
+        } catch (error) {
+            console.error("Error fetching Banners:", error);
+        }
+    };
     const fetchBhagwadGeeta = async () => {
         try {
             const response = await axios.get("https://rrr.jatssdev.com/api/bhagwad-geeta/all");
@@ -28,7 +50,7 @@ export default function ContextProvider({ children }) {
         try {
             const response = await axios.get("https://rrr.jatssdev.com/api/dashboard/all");
             if (response.data.status === "success") {
-                setOptions(response.data.data || []);
+                setOptions(response.data.data.reverse() || []);
             }
         } catch (error) {
             console.error("Error fetching options:", error);
@@ -57,9 +79,9 @@ export default function ContextProvider({ children }) {
         }
     };
 
-    const fetchBooks = async () => {
+    const fetchBooks = async (url = "https://rrr.jatssdev.com/api/book/all") => {
         try {
-            const response = await axios.get("https://rrr.jatssdev.com/api/book/all");
+            const response = await axios.get(url);
             if (response.data.status === "success") {
                 setBooks(response.data.data || []);
             }
@@ -99,6 +121,7 @@ export default function ContextProvider({ children }) {
         fetchJivVikashPothis();
         fetchGeneralKnowledge(); // Fetch General Knowledge
         fetchBhagwadGeeta();
+        fetchBanners()
     }, []);
 
     return (
@@ -111,6 +134,10 @@ export default function ContextProvider({ children }) {
                 scientists, setScientists, fetchScientists,
                 generalKnowledge, setGeneralKnowledge, fetchGeneralKnowledge, // Added to Context,
                 bhagwadGeeta, setBhagwadGeeta, fetchBhagwadGeeta,
+                banners, setBanners, fetchBanners,
+                chapters,
+                setChapters,
+                fetchChapters,
             }}
         >
             {children}
