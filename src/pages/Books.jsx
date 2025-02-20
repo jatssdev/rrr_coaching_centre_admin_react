@@ -9,7 +9,51 @@ const Books = () => {
     const [selectedStandard, setSelectedStandard] = useState("all");
     const [newBook, setNewBook] = useState({ title: '', book_url: '', standard_id: '', streams: [] });
     const streamsOptions = ["Arts", "Science", "Commerce"]; // Fixed streams
+    // Add these states at the top with other states
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [editBook, setEditBook] = useState({ title: '', book_url: '', standard_id: '', streams: [] });
 
+    // Open Edit Modal & Populate Data
+    const handleEditModalOpen = (book) => {
+        setEditBook({
+            id: book.id,
+            title: book.title,
+            book_url: book.book_url,
+            standard_id: book.standard_id,
+            streams: book.streams || []
+        });
+        setIsEditModalOpen(true);
+    };
+
+    // Close Edit Modal
+    const handleEditModalClose = () => {
+        setIsEditModalOpen(false);
+        setEditBook({ title: '', book_url: '', standard_id: '', streams: [] });
+    };
+
+    // Handle Edit Form Changes
+    const handleEditChange = (e) => {
+        const { name, value } = e.target;
+        setEditBook({ ...editBook, [name]: value });
+    };
+
+    // Handle Streams Change in Edit Modal
+    const handleEditStreamsChange = (e) => {
+        const selectedStreams = Array.from(e.target.selectedOptions, option => option.value);
+        setEditBook({ ...editBook, streams: selectedStreams });
+    };
+
+    // Handle Edit Book Submit
+    const handleEditSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.put(`https://rrr.jatssdev.com/api/book/update?id=${editBook.id}`, editBook);
+            fetchBooks();
+            handleEditModalClose();
+        } catch (error) {
+            console.error("Error updating book:", error);
+        }
+    };
     // Fetch standards on mount
     useEffect(() => {
         fetchStandards();
@@ -137,17 +181,115 @@ const Books = () => {
                                         <FaEye className="mr-2" /> View
                                     </a>
                                     <button
+                                        onClick={() => handleEditModalOpen(book)}
+                                        className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 flex items-center"
+                                    >
+                                        <FaBookOpen className="mr-2" /> Edit
+                                    </button>
+                                    <button
                                         onClick={() => handleDelete(book.id)}
                                         className="bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-red-600 flex items-center"
                                     >
                                         <FaTrash className="mr-2" /> Delete
                                     </button>
                                 </td>
+
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+
+            {/* Edit Book Modal */}
+            {isEditModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                        <h3 className="text-xl font-semibold mb-4">Edit Book</h3>
+                        <form onSubmit={handleEditSubmit}>
+                            {/* Title */}
+                            <div className="mb-4">
+                                <label className="block text-gray-700">Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={editBook.title}
+                                    onChange={handleEditChange}
+                                    className="w-full p-2 border rounded"
+                                    required
+                                />
+                            </div>
+
+                            {/* Book URL */}
+                            <div className="mb-4">
+                                <label className="block text-gray-700">Book URL</label>
+                                <input
+                                    type="text"
+                                    name="book_url"
+                                    value={editBook.book_url}
+                                    onChange={handleEditChange}
+                                    className="w-full p-2 border rounded"
+                                    required
+                                />
+                            </div>
+
+                            {/* Standard Selection */}
+                            <div className="mb-4">
+                                <label className="block text-gray-700">Standard</label>
+                                <select
+                                    name="standard_id"
+                                    value={editBook.standard_id}
+                                    onChange={handleEditChange}
+                                    className="w-full p-2 border rounded"
+                                    required
+                                >
+                                    <option value="">Select Standard</option>
+                                    {standards.map(std => (
+                                        <option key={std.id} value={std.id}>{std.name_en}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            {/* Streams Selection (For 11th & 12th Standards) */}
+                            {(editBook.standard_id === "11" || editBook.standard_id === "12") && (
+                                <div className="mb-4">
+                                    <label className="block text-gray-700">Streams</label>
+                                    <select
+                                        multiple
+                                        value={editBook.streams}
+                                        onChange={handleEditStreamsChange}
+                                        className="w-full p-2 border rounded"
+                                    >
+                                        {streamsOptions.map(stream => (
+                                            <option key={stream} value={stream}>
+                                                {stream}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <p className="text-sm text-gray-500 mt-1">Hold Ctrl (Cmd on Mac) to select multiple streams.</p>
+                                </div>
+                            )}
+
+                            {/* Form Buttons */}
+                            <div className="flex justify-end space-x-4">
+                                <button
+                                    type="button"
+                                    onClick={handleEditModalClose}
+                                    className="bg-gray-300 px-4 py-2 rounded-lg"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary"
+                                >
+                                    Update Book
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
 
             {/* Add New Book Modal */}
             {isModalOpen && (
@@ -229,4 +371,4 @@ const Books = () => {
     );
 };
 
-export default Books;
+export default Books;   
