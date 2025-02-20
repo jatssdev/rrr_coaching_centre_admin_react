@@ -14,6 +14,19 @@ export default function ContextProvider({ children }) {
     const [bhagwadGeeta, setBhagwadGeeta] = useState([]); // New State
     const [banners, setBanners] = useState([]); // New State
     const [chapters, setChapters] = useState([]);
+    const [mathsOptions, setMathsOptions] = useState([]);
+
+    const fetchMathsOptions = async (url = "https://rrr.jatssdev.com/api/mathematics-option/all") => {
+        try {
+            const response = await axios.get(url);
+            if (response.data.status === "success") {
+                setMathsOptions(response.data.data || []);
+            }
+        } catch (error) {
+            console.error("Error fetching Maths Options:", error);
+        }
+    };
+
 
     const fetchChapters = async () => {
         try {
@@ -122,6 +135,7 @@ export default function ContextProvider({ children }) {
         fetchGeneralKnowledge(); // Fetch General Knowledge
         fetchBhagwadGeeta();
         fetchBanners()
+        fetchMathsOptions()
     }, []);
 
     return (
@@ -138,6 +152,9 @@ export default function ContextProvider({ children }) {
                 chapters,
                 setChapters,
                 fetchChapters,
+                mathsOptions,
+                setMathsOptions,
+                fetchMathsOptions,
             }}
         >
             {children}

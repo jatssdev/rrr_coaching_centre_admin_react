@@ -76,6 +76,12 @@ const Sidebar = () => {
         >
           <FaBookReader className="mr-3 text-xl text-primary" /> Youtube
         </NavLink>
+        <NavLink
+          to="/maths"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBookReader className="mr-3 text-xl text-primary" /> Maths
+        </NavLink>
       </nav>
     </div>
   );
