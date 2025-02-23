@@ -50,7 +50,7 @@ const Maths = () => {
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`https://rrr.jatssdev.com/api/maths/update?id=${editOption.id}`, editOption);
+            await axios.put(`https://rrr.jatssdev.com/api/mathematics-option/edit?id=${editOption.id}`, editOption);
             fetchMathsOptions();
             setIsEditModalOpen(false);
         } catch (error) {

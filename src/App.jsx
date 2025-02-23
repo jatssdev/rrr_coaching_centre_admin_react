@@ -18,6 +18,7 @@ import Banners from "./pages/Banners";
 import Chapters from "./pages/Chapters";
 import Youtube from "./pages/Youtube";
 import Maths from "./pages/Maths";
+import MathBooks from "./pages/MathBooks";
 
 
 const router = createBrowserRouter([
@@ -41,6 +42,8 @@ const router = createBrowserRouter([
           { path: "chapters", element: <Chapters /> },
           { path: "youtube", element: <Youtube /> },
           { path: "maths", element: <Maths /> },
+          { path: "maths-books", element: <MathBooks /> },
+
 
 
 

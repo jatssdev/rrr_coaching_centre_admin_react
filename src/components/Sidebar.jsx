@@ -80,10 +80,17 @@ const Sidebar = () => {
           to="/maths"
           className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
         >
-          <FaBookReader className="mr-3 text-xl text-primary" /> Maths
+          <FaBookReader className="mr-3 text-xl text-primary" /> Maths options
+        </NavLink>
+        <NavLink
+          to="/maths-books"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBookReader className="mr-3 text-xl text-primary" /> Maths Books
         </NavLink>
       </nav>
     </div>
+    
   );
 };
 
