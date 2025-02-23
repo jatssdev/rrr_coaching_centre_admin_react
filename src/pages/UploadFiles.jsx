@@ -39,7 +39,7 @@ const UploadFiles = () => {
 
         try {
             const response = await axios.post(
-                "https:rrr.jatssdev.com/api/upload/file",
+                "https://rrr.jatssdev.com/api/upload/file",
                 formData,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
