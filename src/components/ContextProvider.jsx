@@ -105,7 +105,7 @@ export default function ContextProvider({ children }) {
 
     const fetchScientists = async () => {
         try {
-            const response = await axios.get("https://rrr.jatssdev.com/api/scientist/all");
+            const response = await axios.get("https://rrr.jatssdev.com/api/scientist");
             if (response.data.status === "success") {
                 setScientists(response.data.data || []);
             }

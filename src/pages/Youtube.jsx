@@ -154,7 +154,7 @@ const YouTube = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {videos.map(video => (
+                        {videos.map(video => (  
                             <tr key={video.id} className="border-b border-gray-200 hover:bg-gray-100 transition">
                                 <td className="p-4 text-gray-700 font-medium flex items-center space-x-2">
                                     <FaYoutube className="text-red-500" />
@@ -187,10 +187,10 @@ const YouTube = () => {
             {/* Add Video Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                    <div className="bg-white p-6  rounded-lg shadow-lg w-96">
                         <h3 className="text-xl font-semibold mb-4">Add New Video</h3>
                         {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
-                        <form onSubmit={handleSubmit}>
+                        <form className=' max-h-[70vh] overflow-auto' onSubmit={handleSubmit}>
                             {/* Standard Selection */}
                             <label className="block text-gray-700 mb-2">Standard</label>
                             <select onChange={handleStandardChange} className="w-full p-2 border rounded mb-4" required>
