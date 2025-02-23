@@ -88,9 +88,15 @@ const Sidebar = () => {
         >
           <FaBookReader className="mr-3 text-xl text-primary" /> Maths Books
         </NavLink>
+        <NavLink
+          to="/upload"
+          className={({ isActive }) => `flex items-center p-4 rounded-lg transition-all ${isActive ? 'bg-primary text-white' : 'hover:bg-blue-100 text-gray-700'}`}
+        >
+          <FaBookReader className="mr-3 text-xl text-primary" /> Upload Files
+        </NavLink>
       </nav>
     </div>
-    
+
   );
 };
 

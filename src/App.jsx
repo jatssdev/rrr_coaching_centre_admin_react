@@ -19,6 +19,7 @@ import Chapters from "./pages/Chapters";
 import Youtube from "./pages/Youtube";
 import Maths from "./pages/Maths";
 import MathBooks from "./pages/MathBooks";
+import UploadFiles from "./pages/UploadFiles";
 
 
 const router = createBrowserRouter([
@@ -43,10 +44,7 @@ const router = createBrowserRouter([
           { path: "youtube", element: <Youtube /> },
           { path: "maths", element: <Maths /> },
           { path: "maths-books", element: <MathBooks /> },
-
-
-
-
+          { path: "upload", element: <UploadFiles /> },
         ]
       },
     ],
