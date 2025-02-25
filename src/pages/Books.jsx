@@ -11,7 +11,7 @@ const Books = () => {
     const streamsOptions = ["Arts", "Science", "Commerce"]; // Fixed streams
     // Add these states at the top with other states
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [editBook, setEditBook] = useState({ title: '', book_url: '', standard_id: '', streams: [] });
+    const [editBook, setEditBook] = useState({ title: '', book_url: '', standard_id: '', streams: null });
 
     // Open Edit Modal & Populate Data
     const handleEditModalOpen = (book) => {
@@ -20,7 +20,7 @@ const Books = () => {
             title: book.title,
             book_url: book.book_url,
             standard_id: book.standard_id,
-            streams: book.streams || []
+            streams: book.streams || null
         });
         setIsEditModalOpen(true);
     };
@@ -47,7 +47,7 @@ const Books = () => {
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`https://rrr.jatssdev.com/api/book/update?id=${editBook.id}`, editBook);
+            await axios.put(`https://rrr.jatssdev.com/api/book/edit?id=${editBook.id}`, editBook);
             fetchBooks();
             handleEditModalClose();
         } catch (error) {
@@ -163,9 +163,9 @@ const Books = () => {
                                 <td className="p-4 text-gray-700 font-medium flex items-center space-x-2">
                                     <FaBookOpen className="text-primary" />
                                     <span>{book.title}</span>
-                                </td>
+                                </td>*
                                 <td className="p-4 text-gray-700 font-medium">{book.standard_name}</td>
-                                <td className="p-4 text-gray-700 font-medium">{book.streams?.join(", ") || "N/A"}</td>
+                                <td className="p-4 text-gray-700 font-medium">{book?.streams?.join(", ") || "N/A"}</td>
                                 <td className="p-4 flex justify-center">
                                     <button onClick={() => handleToggleChapters(book.id)} className="text-primary">
                                         {book.has_chapters ? <FaToggleOn size={24} /> : <FaToggleOff size={24} />}
